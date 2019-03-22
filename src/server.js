@@ -1,9 +1,5 @@
-import express from "express";
-import routes from "./routes";
+import app from './app';
 
-const app = express();
-
-app.use(routes);
-
-app.listen(3600, () => console.log(`Server is listening on port 3600`));
+// eslint-disable-next-line no-console
+app.listen(3600, () => console.log('Server is listening on port 3600'));
 module.exports = app;

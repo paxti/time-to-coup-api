@@ -1,5 +1,7 @@
 <p align="center"><img src="https://storage.googleapis.com/time-to-coup-api/twitter_header_photo_2.png" alt="header image"></p>
 
+[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+
 # Time to Coup
 
 # ESLint rules
