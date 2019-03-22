@@ -1,5 +1,5 @@
 {
-  "name": "coup-game-api",
+  "name": "time-to-coup-api",
   "version": "0.0.1",
   "description": "API to support teams who play Coup",
   "main": "src/server.js",
