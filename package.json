@@ -2,11 +2,11 @@
   "name": "coup-game-api",
   "version": "0.0.1",
   "description": "API to support teams who play Coup",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "nodemon --exec babel-node src/server.js",
     "build": "babel src --out-dir dist",
-    "serve": "node dist/index.js",
+    "serve": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Initech",
