@@ -4,6 +4,8 @@
 
 # Time to Coup
 
+GraphQL based API to track history of Coup G54 games.
+
 # ESLint rules
 
 Notible rules
@@ -19,11 +21,39 @@ Notible rules
 }
 ```
 
+# GraphQL
+
+Avaliable schemas
+
+```gql
+type Card {
+  name: String!
+  action: String!
+  category: String!
+  counteraction: String
+}
+
+type Query {
+  cardsInCategory(category: String!): [Card]
+  card(id: Int!): Card
+  cards: [Card]
+}
+```
+
+# CI pipeline
+
+GCP Cloud Build used to build test and deploy app to GCP App Engine. Take a look at `cloudbuild.yaml` and `app.yaml` for more information.
+
 # Install & Run
 
-Run `npm install` to install all packages and `npm run start` to start app. App has live reload using `nodemon`.
+Run `npm install` to install all packages and `npm run dev` to start app with hot reload. App has live reload using `nodemon`.
 
-Run `npm run build && npm run serve` to use production version
+Run `npm run build && npm run serve` to use production version.
+Run `npm run test` for testing.
+
+# Demo
+
+Demo avaliable at `https://time-to-coup.appspot.com`
 
 ## 📄 License
 
