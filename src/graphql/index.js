@@ -1,15 +1,7 @@
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
+import { typeDef as Card, resolvers as cardResolvers } from './schemas/card';
 
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => 'Hello world!'
-  }
-};
-
-export default new ApolloServer({ typeDefs, resolvers });
+export default new ApolloServer({
+  typeDefs: [Card],
+  resolvers: cardResolvers
+});
