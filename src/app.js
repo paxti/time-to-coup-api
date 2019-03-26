@@ -5,6 +5,7 @@ import graphql from './graphql';
 const app = express();
 
 app.use(routes);
-app.use('/graphql', graphql);
+
+graphql.applyMiddleware({ app });
 
 module.exports = app;

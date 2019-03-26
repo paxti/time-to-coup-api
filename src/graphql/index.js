@@ -1,18 +1,15 @@
-import graphqlHTTP from 'express-graphql';
-import { buildSchema } from 'graphql';
+import { ApolloServer, gql } from 'apollo-server-express';
 
-const schema = buildSchema(`
+const typeDefs = gql`
   type Query {
     hello: String
   }
-`);
+`;
 
-const root = {
-  hello: () => 'Hello world!'
+const resolvers = {
+  Query: {
+    hello: () => 'Hello world!'
+  }
 };
 
-export default graphqlHTTP({
-  schema,
-  rootValue: root,
-  graphiql: true
-});
+export default new ApolloServer({ typeDefs, resolvers });
