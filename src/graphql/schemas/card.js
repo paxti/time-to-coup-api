@@ -1,5 +1,6 @@
 import { gql } from 'apollo-server-express';
 import cardsData from '../../../data/cards';
+import generateRandom from '../../utils';
 
 export const typeDef = gql`
   type Card {
@@ -20,7 +21,7 @@ export const typeDef = gql`
 export const resolvers = {
   Query: {
     randomDeck(_parent, _args) {
-      return cardsData.slice(0, 5);
+      return generateRandom().map(number => cardsData[number]);
     },
     cardsInCategory(_parent, args) {
       return cardsData.filter(card => card.category === args.category);
