@@ -10,6 +10,7 @@ export const typeDef = gql`
   }
 
   type Query {
+    randomDeck: [Card]!
     cardsInCategory(category: String!): [Card]
     card(id: Int!): Card
     cards: [Card]
@@ -18,7 +19,10 @@ export const typeDef = gql`
 
 export const resolvers = {
   Query: {
-    cardsInCategory: (_parent, args) => {
+    randomDeck(_parent, _args) {
+      return cardsData.slice(0, 5);
+    },
+    cardsInCategory(_parent, args) {
       return cardsData.filter(card => card.category === args.category);
     },
     card(_parent, args) {

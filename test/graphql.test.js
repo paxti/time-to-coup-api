@@ -119,4 +119,26 @@ describe('graphql', () => {
       ]);
     });
   });
+
+  describe("query 'randomDeck'", () => {
+    it('should return array of size 5', async () => {
+      const query = `{ randomDeck { name } }`;
+      const client = createTestClient(myTestServer);
+      const res = await client.query({ query });
+      expect(res.data.randomDeck.length).toEqual(5);
+    });
+
+    it('should return array of Cards', async () => {
+      const query = `{ randomDeck { name action category } }`;
+      const client = createTestClient(myTestServer);
+      const res = await client.query({ query });
+      expect(res.data.randomDeck[0]).toEqual(
+        expect.objectContaining({
+          name: expect.any(String),
+          action: expect.any(String),
+          category: expect.any(String)
+        })
+      );
+    });
+  });
 });
