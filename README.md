@@ -34,6 +34,7 @@ type Card {
 }
 
 type Query {
+  randomDeck: [Card]!
   cardsInCategory(category: String!): [Card]
   card(id: Int!): Card
   cards: [Card]
@@ -48,7 +49,7 @@ GCP Cloud Build used to build test and deploy app to GCP App Engine. Take a look
 
 Run `npm install` to install all packages and `npm run dev` to start app with hot reload. App has live reload using `nodemon`.
 
-Run `npm run build && npm run serve` to use production version.
+Run `npm run build && npm run start` to use production version.
 Run `npm run test` for testing.
 
 # Demo
