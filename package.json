@@ -18,7 +18,8 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "graphql": "^14.1.1",
-    "graphql-tools": "^4.0.4"
+    "graphql-tools": "^4.0.4",
+    "mongoose": "^5.4.20"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -40,5 +41,8 @@
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
