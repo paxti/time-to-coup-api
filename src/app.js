@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {} from 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';

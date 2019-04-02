@@ -18,6 +18,6 @@ export default function generateRandom() {
     generateRandomNumber(5) + 0,
     generateRandomNumber(5) + 5,
     generateRandomNumber(5) + 10,
-    ...twoRundomNumbers().map(number => number + 15)
+    ...twoRundomNumbers().map((number) => number + 15)
   ];
 }

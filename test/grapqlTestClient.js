@@ -1,7 +1,7 @@
 /* eslint-disable arrow-parens */
 import { print } from 'graphql';
 
-export default server => {
+export default (server) => {
   const executeOperation = server.executeOperation.bind(server);
   const test = ({ query, mutation, ...args }) => {
     const operation = query || mutation;
