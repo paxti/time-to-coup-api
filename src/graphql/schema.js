@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-express';
-import cardsData from '../../../data/cards';
-import generateRandom from '../../utils';
-import Session from '../../models/Session';
+import cardsData from '../../data/cards';
+import generateRandom from '../utils';
+import Session from '../models/Session';
 
 export const typeDef = gql`
   type Card {

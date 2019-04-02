@@ -1,16 +1,13 @@
 /* eslint-disable quotes */
 import { ApolloServerBase } from 'apollo-server-core';
 import createTestClient from './grapqlTestClient';
-import {
-  typeDef as Card,
-  resolvers as cardResolvers
-} from '../src/graphql/schemas/card';
+import { typeDef, resolvers } from '../src/graphql/schema';
 
 describe('graphql Cards', () => {
   const myTestServer = new ApolloServerBase({
-    typeDefs: [Card],
+    typeDefs: [typeDef],
     context: () => ({}),
-    resolvers: cardResolvers
+    resolvers
   });
 
   describe("query 'cards'", () => {

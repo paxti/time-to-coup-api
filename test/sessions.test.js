@@ -4,16 +4,13 @@ import {} from 'dotenv/config';
 import { ApolloServerBase } from 'apollo-server-core';
 import createTestClient from './grapqlTestClient';
 import Session from '../src/models/Session';
-import {
-  typeDef as Card,
-  resolvers as cardResolvers
-} from '../src/graphql/schemas/card';
+import { typeDef, resolvers } from '../src/graphql/schema';
 
 describe('graphql Sessions', () => {
   const myTestServer = new ApolloServerBase({
-    typeDefs: [Card],
+    typeDefs: [typeDef],
     context: () => ({}),
-    resolvers: cardResolvers
+    resolvers
   });
 
   const sessions = [

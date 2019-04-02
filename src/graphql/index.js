@@ -1,7 +1,7 @@
 import { ApolloServer } from 'apollo-server-express';
-import { typeDef as Card, resolvers as cardResolvers } from './schemas/card';
+import { typeDef, resolvers } from './schema';
 
 export default new ApolloServer({
-  typeDefs: [Card],
-  resolvers: cardResolvers
+  typeDefs: [typeDef],
+  resolvers
 });
