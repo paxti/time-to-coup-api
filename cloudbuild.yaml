@@ -6,8 +6,8 @@ steps:
       - --ciphertext-file=.env.enc
       - --plaintext-file=.env
       - --location=global
-      - --keyring=time_to_coup
-      - --key=time_to_coup
+      - --keyring=time-to-coup
+      - --key=time-to-coup
   - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
   - name: 'gcr.io/cloud-builders/npm'
