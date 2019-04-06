@@ -1,7 +1,12 @@
 import { gql } from 'apollo-server-express';
+import { PubSub } from 'apollo-server';
 import cardsData from '../../data/cards';
 import generateRandom from '../utils';
 import Session from '../models/Session';
+
+const SESSION_ADDED = 'SESSION_ADDED';
+
+const pubsub = new PubSub();
 
 export const typeDef = gql`
   type Card {
@@ -14,7 +19,14 @@ export const typeDef = gql`
   type Session {
     id: String!
     name: String!
-    email: String!
+  }
+
+  type Subscription {
+    sessionAdded: Session
+  }
+
+  type Mutation {
+    addSession(id: String, name: String): Session
   }
 
   type Query {
@@ -28,6 +40,11 @@ export const typeDef = gql`
 `;
 
 export const resolvers = {
+  Subscription: {
+    sessionAdded: {
+      subscribe: () => pubsub.asyncIterator([SESSION_ADDED])
+    }
+  },
   Query: {
     randomDeck(_parent, _args) {
       return generateRandom().map((number) => cardsData[number]);
@@ -46,6 +63,13 @@ export const resolvers = {
     },
     async session(_parent, args) {
       return Session.findOne(args);
+    }
+  },
+  Mutation: {
+    async addSession(_parent, { id, name }, _context) {
+      const session = await new Session({ id, name }).save();
+      pubsub.publish(SESSION_ADDED, { sessionAdded: session });
+      return session;
     }
   }
 };

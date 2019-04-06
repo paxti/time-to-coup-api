@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import {} from 'dotenv/config';
 import express from 'express';
+import { createServer } from 'http';
 import mongoose from 'mongoose';
 
 import routes from './routes';
@@ -22,4 +23,7 @@ app.use(routes);
 
 graphql.applyMiddleware({ app });
 
-module.exports = app;
+const httpServer = createServer(app);
+graphql.installSubscriptionHandlers(httpServer);
+
+module.exports = httpServer;

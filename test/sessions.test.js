@@ -55,4 +55,31 @@ describe('graphql Sessions', () => {
     expect(res.data.session.id).toEqual(sessions[0].id);
     expect(res.data.session.name).toEqual(sessions[0].name);
   });
+
+  describe('Session mutation', () => {
+    const variables = { id: '123456qq', name: 'wow' };
+
+    it('should return new object after mutation', async () => {
+      const mutation = `mutation addSession($id: String, $name: String) { addSession (id: $id, name: $name) { id name } }`;
+      const client = createTestClient(myTestServer);
+      const res = await client.mutate({
+        mutation,
+        variables
+      });
+      expect(res.data.addSession).toEqual(variables);
+    });
+
+    it('should create new session record in DB after mutation', async () => {
+      expect((await Session.find({})).length).toEqual(2);
+      const mutation = `mutation addSession($id: String, $name: String) { addSession (id: $id, name: $name) { id name } }`;
+      const client = createTestClient(myTestServer);
+      await client.mutate({ mutation, variables });
+      const sessionRecords = await Session.findOne(
+        { id: variables.id },
+        'id name'
+      );
+      expect(sessionRecords.id).toEqual(variables.id);
+      expect(sessionRecords.name).toEqual(variables.name);
+    });
+  });
 });
