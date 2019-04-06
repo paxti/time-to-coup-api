@@ -39,6 +39,10 @@ type Session {
   name: String!
 }
 
+type Mutation {
+  addSession(id: String, name: String): Session
+}
+
 type Query {
   randomDeck: [Card]!
   cardsInCategory(category: String!): [Card]
@@ -49,26 +53,39 @@ type Query {
 }
 ```
 
+Also subscription is avaliable for Sessions
+
+```gql
+subscription sessionAdded {
+  sessionAdded {
+    id
+    name
+  }
+}
+```
+
 # Install & Run
 
-## Prerequisites 
+## Prerequisites
 
 You need active MongoDB server available to run or test the application locally.
 
-## Add .env file 
+## Add .env file
 
-`MONGO_DB_CONNECTION=mongodb://localhost:27017/myproject`
-`MONGO_DB_TEST_CONNECTION=mongodb://localhost:27017/myproject_test`
-`PORT=8080`
+```shell
+MONGO_DB_CONNECTION=mongodb://localhost:27017/myproject
+MONGO_DB_TEST_CONNECTION=mongodb://localhost:27017/myproject_test
+PORT=8080
+```
 
-Run `npm install` to install all packages and `npm run dev` to start app with hot reload. App has live reload using `nodemon`.
+Run `npm install` to install all packages, and `npm run dev` to start app with hot reload using `nodemon`.
 
 Run `npm run build && npm run start` to use production version.
 Run `npm run test` for testing.
 
 # CI pipeline
 
-[GCP Cloud Build](https://cloud.google.com/cloud-build/) used to build test and deploy an app to the GCP App Engine. Take a look at `cloudbuild.yaml` and `app.yaml` for more information. To be able to deploy app successfully to `Cloud Build` you would need to encrypt .env file with prod values using [kms](https://cloud.google.com/kms/) an commit it to the repository. Also, you need to update keyName and keyRing in `cloudbuid.yaml` more information [here](https://cloud.google.com/kms/docs/encrypt-decrypt)
+[GCP Cloud Build](https://cloud.google.com/cloud-build/) used to build test and deploy an app to the GCP App Engine. Take a look at `cloudbuild.yaml` and `app.yaml` for more information. To be able to deploy app successfully to `Cloud Build` you would need to encrypt .env file with prod values using [kms](https://cloud.google.com/kms/) and commit it to the repository. Also, you need to update keyName and keyRing in `cloudbuid.yaml` more information [here](https://cloud.google.com/kms/docs/encrypt-decrypt)
 
 # Demo
 
@@ -77,4 +94,3 @@ Demo avaliable at `https://time-to-coup.appspot.com`
 ## 📄 License
 
 MIT License
-
