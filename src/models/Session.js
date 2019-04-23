@@ -1,13 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
 const SessionSchema = new Schema({
-  id: {
-    type: String,
-    required: true,
-    unique: true
-  },
   name: {
     type: String,
     required: true

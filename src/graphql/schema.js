@@ -70,16 +70,16 @@ export const resolvers = {
     async sessions(_parent, _argsd) {
       return Session.find({});
     },
-    async session(_parent, args) {
-      return Session.findOne(args);
+    async session(_parent, { id }) {
+      return Session.findById(id);
     },
     async rounds(_parent, _argsd) {
       return Round.find({});
     }
   },
   Mutation: {
-    async addSession(_parent, { id, name }, _context) {
-      const session = await new Session({ id, name }).save();
+    async addSession(_parent, { name }, _context) {
+      const session = await new Session({ name }).save();
       pubsub.publish(SESSION_ADDED, { sessionAdded: session });
       return session;
     }
