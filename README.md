@@ -39,8 +39,14 @@ type Session {
   name: String!
 }
 
+type Round {
+  winner: String
+  players: [String]!
+  type: String!
+}
+
 type Mutation {
-  addSession(id: String, name: String): Session
+  addSession(name: String): Session
 }
 
 type Query {
@@ -50,6 +56,8 @@ type Query {
   cards: [Card]
   session(id: String!): Session
   sessions: [Session]
+  rounds: [Round]
+  round(id: String): Round
 }
 ```
 
@@ -58,7 +66,6 @@ Also subscription is avaliable for Sessions
 ```gql
 subscription sessionAdded {
   sessionAdded {
-    id
     name
   }
 }
