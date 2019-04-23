@@ -3,6 +3,7 @@ import { PubSub } from 'apollo-server';
 import cardsData from '../../data/cards';
 import generateRandom from '../utils';
 import Session from '../models/Session';
+import Round from '../models/Round';
 
 const SESSION_ADDED = 'SESSION_ADDED';
 
@@ -21,6 +22,12 @@ export const typeDef = gql`
     name: String!
   }
 
+  type Round {
+    winner: String
+    players: [String]!
+    type: String!
+  }
+
   type Subscription {
     sessionAdded: Session
   }
@@ -36,6 +43,8 @@ export const typeDef = gql`
     cards: [Card]
     session(id: String!): Session
     sessions: [Session]
+    rounds: [Round]
+    round(id: String): Round
   }
 `;
 
@@ -63,6 +72,9 @@ export const resolvers = {
     },
     async session(_parent, args) {
       return Session.findOne(args);
+    },
+    async rounds(_parent, _argsd) {
+      return Round.find({});
     }
   },
   Mutation: {
