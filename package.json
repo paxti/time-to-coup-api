@@ -9,7 +9,7 @@
     "start": "node dist/server.js",
     "build": "babel src --out-dir dist",
     "serve": "node dist/server.js",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "author": "Initech",
   "license": "MIT",
