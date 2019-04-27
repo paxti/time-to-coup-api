@@ -11,7 +11,9 @@ steps:
   - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
   - name: 'gcr.io/cloud-builders/npm'
-    args: ['run', 'test']
+    args: ['run', 'test-with-coverage']
+    env:
+      - 'CODACY_PROJECT_TOKEN=${_CODACY_PROJECT_TOKEN}'
   - name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'build']
   - name: 'gcr.io/cloud-builders/gcloud'

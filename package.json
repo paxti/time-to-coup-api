@@ -9,7 +9,9 @@
     "start": "node dist/server.js",
     "build": "babel src --out-dir dist",
     "serve": "node dist/server.js",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "print-env": "node -p 'process.env'",
+    "test-with-coverage": "jest --runInBand --coverage && cat ./coverage/lcov.info | codacy-coverage"
   },
   "author": "Initech",
   "license": "MIT",
@@ -17,6 +19,7 @@
     "apollo-server": "^2.4.8",
     "apollo-server-express": "^2.4.8",
     "body-parser": "^1.18.3",
+    "codacy-coverage": "^3.4.0",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "graphql": "^14.1.1",
