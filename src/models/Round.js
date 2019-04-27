@@ -16,6 +16,10 @@ const RoundSchema = new Schema({
     type: Array,
     of: String,
     required: true
+  },
+  session: {
+    type: Schema.Types.ObjectId,
+    ref: 'Session'
   }
 });
 

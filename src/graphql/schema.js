@@ -24,9 +24,11 @@ export const typeDef = gql`
   }
 
   type Round {
+    id: String!
     winner: String
     players: [String]!
     type: String!
+    session: Session!
   }
 
   type Subscription {
@@ -45,7 +47,7 @@ export const typeDef = gql`
     session(id: String!): Session
     sessions: [Session]
     rounds: [Round]
-    round(id: String): Round
+    round(id: String!): Round
   }
 `;
 
@@ -75,7 +77,10 @@ export const resolvers = {
       return Session.findById(id).populate('rounds');
     },
     async rounds(_parent, _argsd) {
-      return Round.find({});
+      return Round.find({}).populate('session');
+    },
+    async round(_parent, { id }) {
+      return Round.findById(id).populate('session');
     }
   },
   Mutation: {
