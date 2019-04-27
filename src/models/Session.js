@@ -7,7 +7,13 @@ const SessionSchema = new Schema({
   name: {
     type: String,
     required: true
-  }
+  },
+  rounds: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Round'
+    }
+  ]
 });
 
 const Session = mongoose.model('Session', SessionSchema);

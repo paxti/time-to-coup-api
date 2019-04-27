@@ -20,6 +20,7 @@ export const typeDef = gql`
   type Session {
     id: String!
     name: String!
+    rounds: [Round!]
   }
 
   type Round {
@@ -68,10 +69,10 @@ export const resolvers = {
       return cardsData;
     },
     async sessions(_parent, _argsd) {
-      return Session.find({});
+      return Session.find({}).populate('rounds');
     },
     async session(_parent, { id }) {
-      return Session.findById(id);
+      return Session.findById(id).populate('rounds');
     },
     async rounds(_parent, _argsd) {
       return Round.find({});
