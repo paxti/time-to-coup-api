@@ -6,8 +6,7 @@ import createTestClient from './grapqlTestClient';
 import Session from '../src/models/Session';
 import Round from '../src/models/Round';
 import { typeDef, resolvers } from '../src/graphql/schema';
-
-const { ObjectId } = mongoose.Types;
+import { ids, rounds, sessions } from './seed';
 
 describe('graphql Sessions', () => {
   const myTestServer = new ApolloServerBase({
@@ -15,33 +14,6 @@ describe('graphql Sessions', () => {
     context: () => ({}),
     resolvers
   });
-
-  const ids = [
-    '5cbe90460408ff48b836e134',
-    '5cbe90d0d5fa061470c311aa',
-    '5cc3cca98013871074660a87',
-    '5cc3cdc48013871074660a89'
-  ];
-
-  const sessions = [
-    { _id: ObjectId(ids[0]), name: 'session 1', rounds: [ObjectId(ids[2])] },
-    { _id: ObjectId(ids[1]), name: 'session 2', rounds: [ObjectId(ids[3])] }
-  ];
-
-  const rounds = [
-    {
-      _id: ObjectId(ids[2]),
-      type: 'classic',
-      winner: 'test',
-      players: ['1']
-    },
-    {
-      _id: ObjectId(ids[3]),
-      type: 'classic',
-      winner: 'anather test',
-      players: ['1']
-    }
-  ];
 
   beforeAll(() => {
     mongoose.connect(process.env.MONGO_DB_TEST_CONNECTION, {
@@ -124,7 +96,7 @@ describe('graphql Sessions', () => {
       expect(res.data.session.id).toEqual(ids[0]);
       expect(res.data.session.name).toEqual(sessions[0].name);
       expect(res.data.session.rounds.length).toEqual(1);
-      expect(res.data.session.rounds[0].winner).toEqual('test');
+      expect(res.data.session.rounds[0].winner).toEqual('Player 2');
     });
 
     it('should return Round as a part of every Session', async () => {
@@ -138,8 +110,8 @@ describe('graphql Sessions', () => {
       const sessionOne = res.data.sessions.find((s) => s.id === ids[0]);
       const sessionTwo = res.data.sessions.find((s) => s.id === ids[1]);
 
-      expect(sessionOne.rounds[0].winner).toEqual('test');
-      expect(sessionTwo.rounds[0].winner).toEqual('anather test');
+      expect(sessionOne.rounds[0].winner).toEqual('Player 2');
+      expect(sessionTwo.rounds[0].winner).toEqual('Player 1');
     });
   });
 });
