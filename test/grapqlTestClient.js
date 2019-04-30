@@ -1,4 +1,3 @@
-/* eslint-disable arrow-parens */
 import { print } from 'graphql';
 
 export default (server) => {
