@@ -31,6 +31,12 @@ export const typeDef = gql`
     session: Session!
   }
 
+  type User {
+    id: String!
+    name: String
+    deviceId: String
+  }
+
   type Subscription {
     sessionAdded: Session
   }
