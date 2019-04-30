@@ -2,6 +2,7 @@
 
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2101745725aa43dc82288c54e5fa6794)](https://www.codacy.com/app/paxti/time-to-coup-api?utm_source=github.com&utm_medium=referral&utm_content=paxti/time-to-coup-api&utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/2101745725aa43dc82288c54e5fa6794)](https://www.codacy.com/app/paxti/time-to-coup-api?utm_source=github.com&utm_medium=referral&utm_content=paxti/time-to-coup-api&utm_campaign=Badge_Coverage)
 
 # Time to Coup
 

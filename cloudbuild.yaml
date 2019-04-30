@@ -12,10 +12,13 @@ steps:
     args: ['install']
   - name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'test-with-coverage']
-    env:
-      - 'CODACY_PROJECT_TOKEN=${_CODACY_PROJECT_TOKEN}'
+    secretEnv: ['CODACY_PROJECT_TOKEN']
   - name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'build']
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy']
     timeout: '590s'
+secrets:
+  - kmsKeyName: projects/time-to-coup/locations/global/keyRings/time-to-coup/cryptoKeys/time-to-coup
+    secretEnv:
+      CODACY_PROJECT_TOKEN: CiQAvCZx1g2PNtoC2tAQZPVuGNayhxo7oY1IpXxhCIvAWKb2Xx4SSQCP0vR2/i4qdpLzY+WiY7RohfHlt60UEpIA+BziM+79oNRY8nPkQVFGOCY21PY4GtlFiZTE64Jll5/zXs+lgsxlWggPEoQmoqw=
