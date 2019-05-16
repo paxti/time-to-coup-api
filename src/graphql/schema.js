@@ -4,6 +4,7 @@ import cardsData from '../../data/cards';
 import generateRandom from '../utils';
 import Session from '../models/Session';
 import Round from '../models/Round';
+import User from '../models/User';
 
 const SESSION_ADDED = 'SESSION_ADDED';
 
@@ -54,6 +55,7 @@ export const typeDef = gql`
     sessions: [Session]
     rounds: [Round]
     round(id: String!): Round
+    users: [User]
   }
 `;
 
@@ -87,6 +89,9 @@ export const resolvers = {
     },
     async round(_parent, { id }) {
       return Round.findById(id).populate('session');
+    },
+    async users(_parent, _argsd) {
+      return User.find({});
     }
   },
   Mutation: {

@@ -30,3 +30,16 @@ export const rounds = [
     session: ObjectId(ids[1])
   }
 ];
+
+export const users = [
+  {
+    _id: ObjectId(ids[0]),
+    name: 'some name here',
+    deviceId: '123123123123'
+  },
+  {
+    _id: ObjectId(ids[1]),
+    name: 'some other name here',
+    deviceId: '09856049856094865'
+  }
+];
